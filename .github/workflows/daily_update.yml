@@ -1,0 +1,29 @@
+name: Daily Website Content Automation
+
+on:
+  schedule:
+    # Runs every day at 8:00 AM IST (2:30 AM UTC)
+    - cron: '30 2 * * *'
+  workflow_dispatch: # Allows manual trigger for testing
+
+jobs:
+  run-automation:
+    runs-runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          pip install requests google-generativeai
+
+      - name: Run Automation Script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          WEBSITE_WEBHOOK_URL: ${{ secrets.WEBSITE_WEBHOOK_URL }}
+        run: python main.py
