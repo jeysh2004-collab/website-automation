@@ -3,7 +3,9 @@ import google.generativeai as genai
 
 # 1. Setup Gemini API Key
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-model = genai.GenerativeModel('gemini-1.5-flash')
+
+# Updated model name to avoid 404 error
+model = genai.GenerativeModel('gemini-1.5-flash-latest')
 
 prompt = """
 You are a daily content updater for my website.
