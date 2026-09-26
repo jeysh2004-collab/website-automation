@@ -17,7 +17,7 @@ generated_text = response.text
 
 print("Generated Content:\n", generated_text)
 
-# 2. Save directly to daily_update.txt in the repository
+# 2. Save content to daily_update.txt in the repository
 with open("daily_update.txt", "w", encoding="utf-8") as f:
     f.write(generated_text)
 
