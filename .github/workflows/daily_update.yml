@@ -4,10 +4,10 @@ on:
   schedule:
     # Runs every day at 9:00 AM IST (3:30 AM UTC)
     - cron: '30 3 * * *'
-  workflow_dispatch: # Manual trigger
+  workflow_dispatch: # Allows manual trigger for testing
 
 permissions:
-  contents: write # Enables write permission to update daily_update.txt
+  contents: write
 
 jobs:
   run-automation:
@@ -28,9 +28,6 @@ jobs:
       - name: Run Automation Script
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          EMAIL_USER: ${{ secrets.EMAIL_USER }}
-          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-          RECEIVER_EMAIL: ${{ secrets.RECEIVER_EMAIL }}
         run: python main.py
 
       - name: Commit and Push daily_update.txt
